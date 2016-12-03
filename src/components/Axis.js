@@ -33,11 +33,11 @@ class Axis {
     };
 
     /**
-     * @param {Formatter}
+     * @param {Formatter} formatter
      * @returns {Axis}
      */
-    setFormatter(func) {
-        this._formatter = func;
+    setFormatter(formatter) {
+        this._formatter = formatter;
 
         return this;
     };
