@@ -1,0 +1,5 @@
+class ChartBase {
+    constructor() {
+
+    }
+}
