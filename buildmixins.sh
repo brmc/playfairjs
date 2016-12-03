@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 mkdir -p $1;
 cd $1
 for var in ${@:2}
@@ -9,9 +8,9 @@ if [ -f $1/$var.js ]; then
 else
 echo "Creating $var.js"
 cat > $var.js <<EOL
-class $var {
-    constructor() {
-
+let $var = (superClass) => class extends superClass {
+    constructor(...args) {
+        super(...args);
     }
 }
 
