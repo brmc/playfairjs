@@ -74,3 +74,5 @@ class IndependentAxis {
         return this._tickMarks;
     };
 }
+
+module.exports = IndependentAxis;
