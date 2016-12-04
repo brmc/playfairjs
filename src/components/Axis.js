@@ -1,4 +1,4 @@
-Formatter = require('../formatters/Formatter');
+var Formatter = require('../formatters/Formatter');
 
 class Axis {
     constructor() {
@@ -6,13 +6,13 @@ class Axis {
          * @type {Formatter}
          * @private
          */
-        this._formatter = null;
+        this.formatter = null;
 
         /**
          * @type {string}
          * @private
          */
-        this._label = '';
+        this.label = '';
     }
 
     /**
@@ -20,16 +20,9 @@ class Axis {
      * @returns {Axis}
      */
     setLabel(val) {
-        this._label = val;
+        this.label = val;
 
         return this;
-    };
-
-    /**
-     * @returns {string}
-     */
-    getLabel() {
-        return this._label;
     };
 
     /**
@@ -37,17 +30,10 @@ class Axis {
      * @returns {Axis}
      */
     setFormatter(formatter) {
-        this._formatter = formatter;
+        this.formatter = formatter;
 
         return this;
     };
-
-    /**
-     * @returns {Formatter}
-     */
-    getFormatter() {
-        return this._formatter;
-    }
 }
 
 module.exports = Axis;

@@ -16,16 +16,9 @@ class DependentAxis extends Axis{
      * @returns {DependentAxis}
      */
     setPosition (isRotated) {
-        position = isRotated ? 'outer-center' : 'outer-middle';
+        this.position = isRotated ? 'outer-center' : 'outer-middle';
 
         return this;
-    };
-
-    /**
-     * @returns {string|*}
-     */
-    getPosition () {
-        return position;
     };
 
     /**
