@@ -2,21 +2,21 @@ let GroupedDataAPI = (superClass) => class extends superClass {
     constructor(...args) {
         super(...args);
 
-        this._groups = [];
+        this.groups = [];
     }
 
     getGroups() {
-        return this._groups;
+        return this.groups;
     }
 
     setGroups(groups) {
-        this._groups = groups;
+        this.groups = groups;
 
         return this;
     }
 
     addGroup(group) {
-        this._groups.push(group);
+        this.groups.push(group);
     }
 
 };

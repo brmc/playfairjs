@@ -2,17 +2,17 @@ let RotationAPI = (superClass) => class extends superClass {
     constructor(...args) {
         super(...args);
 
-        this._rotated = false;
+        this.rotated = false;
     }
 
     rotate() {
-        this._rotated = true;
+        this.rotated = this.isRotated() ? false : true;
 
         return this;
     }
 
     isRotated() {
-        return this._rotated;
+        return this.rotated;
     }
 };
 

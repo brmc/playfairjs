@@ -2,17 +2,17 @@ let UpdateAPI = (superClass) => class extends superClass {
     constructor(...args) {
         super(...args);
 
-        this._updateInterval = false;
+        this.updateInterval = false;
     }
 
     setUpdateInterval(interval) {
-        this._updateInterval = interval;
+        this.updateInterval = interval;
 
         return this;
     }
 
     disableUpdate() {
-        this._updateInterval = false;
+        this.updateInterval = false;
 
         return this;
     }

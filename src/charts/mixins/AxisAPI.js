@@ -14,28 +14,28 @@ let AxisAPI = (superClass) => class extends superClass {
          * @type {IndependentAxis}
          * @private
          */
-        this._xAxis = undefined;
+        this.xAxis = undefined;
 
         /**
          *
          * @type {DependentAxis}
          * @private
          */
-        this._leftYAxis = undefined;
+        this.leftYAxis = undefined;
 
         /**
          *
          * @type {DependentAxis}
          * @private
          */
-        this._rightYAxis = undefined;
+        this.rightYAxis = undefined;
     }
 
     /**
      * @param {IndependentAxis} axis
      */
     setXAxis(axis) {
-        this._xAxis = axis;
+        this.xAxis = axis;
 
         return this;
     }
@@ -46,8 +46,8 @@ let AxisAPI = (superClass) => class extends superClass {
      * @param {Formatter} formatter
      * @returns {Axis}
      */
-    static createAxis(axisClass, label, formatter) {
-        formatter = formatter || defaultFormatter;
+    createAxis(axisClass, label, formatter) {
+        formatter = formatter || function(x) {return x};
 
         var axis = new axisClass();
         axis.setLabel(label)
@@ -61,7 +61,7 @@ let AxisAPI = (superClass) => class extends superClass {
      * @param {Formatter} formatter
      */
     createXAxis(label, formatter) {
-        this._xAxis = this.createAxis(IndependentAxis, label, formatter);
+        this.xAxis = this.createAxis(IndependentAxis, label, formatter);
 
         return this;
     }
@@ -71,7 +71,7 @@ let AxisAPI = (superClass) => class extends superClass {
      * @param {Formatter} formatter
      */
     createLeftYAxis(label, formatter) {
-        this._leftYAxis = this.createAxis(DependentAxis, label, formatter);
+        this.leftYAxis = this.createAxis(DependentAxis, label, formatter);
 
         return this;
     }
@@ -81,7 +81,7 @@ let AxisAPI = (superClass) => class extends superClass {
      * @param {Formatter} formatter
      */
     createRightYAxis(label, formatter) {
-        this._rightYAxis = this.createAxis(DependentAxis, label, formatter);
+        this.rightYAxis = this.createAxis(DependentAxis, label, formatter);
 
         return this;
     }
@@ -90,28 +90,21 @@ let AxisAPI = (superClass) => class extends superClass {
      * @returns {boolean}
      */
     hasLeftYAxis () {
-        return this._leftYAxis !== undefined;
+        return this.leftYAxis !== undefined;
     }
 
     /**
      * @returns {boolean}
      */
     hasRightYAxis() {
-        return this._rightYAxis !== undefined
-    }
-
-    /**
-     * @returns {DependentAxis|*}
-     */
-    getRightYAxis() {
-        return this._rightYAxis;
+        return this.rightYAxis !== undefined
     }
 
     /**
      * @param {DependentAxis} axis
      */
     setLeftYAxis(axis) {
-        this._leftYAxis = axis;
+        this.leftYAxis = axis;
 
         return this;
     }
@@ -121,24 +114,16 @@ let AxisAPI = (superClass) => class extends superClass {
      * @param {DependentAxis} axis
      */
     setRightYAxis(axis) {
-        this._rightYAxis = axis;
+        this.rightYAxis = axis;
 
         return this;
     }
 
     /**
-     * @returns {DependentAxis}
-     */
-    getLeftYAxis() {
-        return this._leftYAxis;
-    }
-
-
-    /**
      * @returns {IndependentAxis}
      */
     getXAxis() {
-        return this._xAxis;
+        return this.xAxis;
     }
 };
 
