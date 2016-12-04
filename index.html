@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <script src="build/playfair.js"></script>
+    <link rel="stylesheet" href="node_modules/c3/c3.min.css">
 </head>
 <body>
+<div id="x"></div>
 <script>
+
+    var chart = new playfair.C3Chart('#x');
+    chart.createXAxis('poop', function(x){return x})
+            .createLeftYAxis('poopie')
+            .hideLegend()
+            .hideGuideline();
+    var series = new playfair.Series('donkey', [1,2,3]);
+    series.useLeftYAxis()
+            .renderAsBar();
+    chart.addDataSet(series);
+    chart.load();
+
+    //a.rotate().reload();
+
 </script>
 </body>
 </html>

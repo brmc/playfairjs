@@ -2,81 +2,72 @@
  * @abstract
  */
 class ChartBase {
-    constructor(domId) {
+    constructor(selector) {
         /**
          * @type {string}
          * @private
          */
-        this._containerSelector = '#'+domId;
+        this.domSelector = selector;
 
         /**
          * @type {boolean}
          * @private
          */
-        this._labels = true;
+        this.labels = true;
 
         /**
          * @type {boolean}
          * @private
          */
-        this._legend = true;
+        this.legend = true;
 
         /**
          * @type {Array}
          * @private
          */
-        this._series = [];
-    }
-
-    getSvgSelector() {
-        return this._containerSelector;
+        this.series = [];
     }
 
     showLabels() {
-        this._labels = true;
+        this.labels = true;
 
         return this;
     }
 
     hideLabels() {
-        this._labels = false;
+        this.labels = false;
 
         return this;
     }
 
     areLabelsVisible() {
-        return this._labels;
+        return this.labels;
     }
 
     showLegend() {
-        this._legend = true;
+        this.legend = true;
 
         return this;
     }
 
     hideLegend() {
-        this._legend = false;
+        this.legend = false;
 
         return this;
     }
 
-    isLegendVisibile() {
-        return this._legend;
-    }
-
-
-    getSeries() {
-        return this._series;
+    isLegendVisible() {
+        return this.legend;
     }
 
     setDataSet(data) {
-        this._series = data;
+        this.series = data;
 
         return this;
     }
 
     addDataSet(data) {
-        this._series.push(data);
+        this.series.push(data);
 
         return this;
     }

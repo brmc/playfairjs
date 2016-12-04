@@ -1,3 +1,6 @@
+var mixwith = require('mixwith');
+var mix = mixwith.mix;
+
 var ChartBase = require('./ChartBase');
 var AxisAPI = require('./mixins/AxisAPI');
 var DrilldownAPI = require('./mixins/DrilldownAPI');

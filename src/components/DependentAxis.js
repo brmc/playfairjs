@@ -29,17 +29,17 @@ class DependentAxis extends Axis{
         var config = {
             show: true,
             label:   {
-                text: this.getLabel(),
+                text: this.label,
                 position: 'outer-middle'
             },
             tick: {
-                format: this.getFormatter()
+                format: this.formatter
             }
         };
 
         config.label = {
-            text: this.getLabel(),
-            position: this.getPosition()
+            text: this.label,
+            position: this.position
         };
 
         return config;

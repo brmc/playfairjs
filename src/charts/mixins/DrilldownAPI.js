@@ -2,11 +2,11 @@ let DrilldownAPI = (superClass) => class extends superClass {
     constructor(...args) {
         super(...args);
 
-        this.drillDown = undefined;
+        this.drilldown = undefined;
     }
 
     setDrilldown(func) {
-        this.drillDown = func;
+        this.drilldown = func;
 
         return this;
     }
