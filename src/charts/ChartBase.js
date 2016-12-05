@@ -28,6 +28,12 @@ class ChartBase {
         this.series = [];
     }
 
+    setDomSelector(selector) {
+        this.domSelector = selector;
+
+        return this;
+    }
+
     showLabels() {
         this.labels = true;
 

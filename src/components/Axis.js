@@ -6,7 +6,7 @@ class Axis {
          * @type {Formatter}
          * @private
          */
-        this.formatter = null;
+        this.formatter = function(x) {return x};
 
         /**
          * @type {string}

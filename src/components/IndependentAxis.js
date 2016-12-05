@@ -22,10 +22,18 @@ class IndependentAxis extends Axis{
     };
 
     setTickMarks(ticks) {
-        this.tickMarks = ticks.map(this.formatter);
+        this.tickMarks = this.formmatter ? ticks.map(this.formatter) : ticks;
 
         return this;
     };
+
+    setFormatter(formatter) {
+        super.setFormatter(formatter);
+
+        if (this.tickMarks !== undefined) {
+            this.setTickMarks(this.tickMarks);
+        }
+    }
 
     useIndexes() {
         return this.setType('indexed');

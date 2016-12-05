@@ -4,23 +4,98 @@
     <meta charset="UTF-8">
     <script src="build/playfair.js"></script>
     <link rel="stylesheet" href="node_modules/c3/c3.min.css">
+    <style>
+        .chart {
+            display: inline-block;
+            width:30%;
+            height:20em;
+        }
+    </style>
 </head>
 <body>
-<div id="x"></div>
+<div id="axis" class="chart"></div>
+<div class="chart pie"></div>
+<div class="chart rotated"></div>
 <script>
 
-    var chart = new playfair.C3Chart('#x');
-    chart.createXAxis('poop', function(x){return x})
-            .createLeftYAxis('poopie')
-            .hideLegend()
-            .hideGuideline();
-    var series = new playfair.Series('donkey', [1,2,3]);
-    series.useLeftYAxis()
-            .renderAsBar();
-    chart.addDataSet(series);
+    /**
+     * First lets create a chart. In the future other models for other
+     * charting libraries will be provided and ideally would be the only line
+     * of code necessaryto change.
+     */
+    var chart = new playfair.C3Chart('#axis');
+
+    /** and some basic setup **/
+    chart.showLegend()
+            .showGuideline()
+            .hideLabels();
+
+    /** Now we need to set an independent axis..*/
+    var xAxis = new playfair.IndependentAxis();
+
+    xAxis.setLabel("websites")
+            .setTickMarks(['foo.com', 'bar.net', 'baz.org']);
+
+    /** you can also use formatters on your axes **/
+    var boringFormatter = function(x) {
+        return x + "!!!!";
+    };
+
+    xAxis.setFormatter(boringFormatter);
+
+    chart.setXAxis(xAxis);
+
+    /** but there are also factory methods directly on the chart **/
+    chart.createLeftYAxis('views')
+            .createRightYAxis('clicks');
+
+
+    /** Add some data to the left axis **/
+    var lastWeekViews = new playfair.Series('last week views', [212, 110, 302]);
+    lastWeekViews.useLeftYAxis()
+            .renderAsLine();
+
+    var thisWeekViews = new playfair.Series('this week views', [122, 100, 230]);
+    thisWeekViews.useLeftYAxis()
+            .renderAsSpline();
+
+    chart.setDataSet([lastWeekViews, thisWeekViews]);
+
+    /** add some new data to the right Axis **/
+    var totalClicks = new playfair.Series('all time clicks', [1038349, 120983, 192334]);
+    totalClicks.renderAsBar()
+            .useRightYAxis();
+
+    /** notice this is a different method than chart.setDataSet() **/
+    chart.addDataSet(totalClicks);
+
     chart.load();
 
-    //a.rotate().reload();
+    /** Now let's create a pie chart **/
+    chart.setDomSelector('.pie');
+
+    lastWeekViews.renderAsPie();
+    thisWeekViews.renderAsPie();
+    chart.setDataSet([lastWeekViews, thisWeekViews]);
+
+    chart.load();
+
+    /** OR how about a rotated area chart **/
+    chart.setDomSelector('.rotated');
+
+    /** clear right axis **/
+    chart.setRightYAxis()
+            .rotate();
+
+    lastWeekViews.renderAsArea();
+    thisWeekViews.renderAsArea();
+
+    chart.setDataSet([lastWeekViews, thisWeekViews]);
+
+    /** ok, there seems to be a bug with calling load() multiple times.
+     * extra tick marks are added for some reason. but you get the idea.
+     * **/
+    chart.load();
 
 </script>
 </body>

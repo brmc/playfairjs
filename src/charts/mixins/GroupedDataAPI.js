@@ -5,10 +5,6 @@ let GroupedDataAPI = (superClass) => class extends superClass {
         this.groups = [];
     }
 
-    getGroups() {
-        return this.groups;
-    }
-
     setGroups(groups) {
         this.groups = groups;
 
