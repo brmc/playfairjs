@@ -1,6 +1,6 @@
 {
   "name": "playfair",
-  "version": "1.0.0",
+  "version": "0.0.0-alpha",
   "description": "",
   "main": "index.js",
   "directories": {
@@ -12,7 +12,7 @@
   "keywords": [],
   "author": "",
   "dependencies": {
-    "c3": "^0.4.11"
+    "c3": "^0.4.11",
   },
   "license": "ISC",
   "devDependencies": {
@@ -21,5 +21,6 @@
     "babelify": "^7.3.0",
     "browserify-css": "^0.9.2",
     "mixwith": "^0.1.1"
+    "browserify": "^13.1.1"
   }
 }
