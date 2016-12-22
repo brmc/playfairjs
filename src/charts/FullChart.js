@@ -1,13 +1,13 @@
-var mixwith = require('mixwith');
-var mix = mixwith.mix;
+let mixwith = require('mixwith');
+let mix = mixwith.mix;
 
-var ChartBase = require('./ChartBase');
-var AxisAPI = require('./mixins/AxisAPI');
-var DrilldownAPI = require('./mixins/DrilldownAPI');
-var GroupedDataAPI = require('./mixins/GroupedDataAPI');
-var RotationAPI = require('./mixins/RotationAPI');
-var TooltipAPI = require('./mixins/TooltipAPI');
-var UpdateAPI = require('./mixins/UpdateAPI');
+let ChartBase = require('./ChartBase');
+let AxisAPI = require('./mixins/AxisAPI');
+let DrilldownAPI = require('./mixins/DrilldownAPI');
+let GroupedDataAPI = require('./mixins/GroupedDataAPI');
+let RotationAPI = require('./mixins/RotationAPI');
+let TooltipAPI = require('./mixins/TooltipAPI');
+let UpdateAPI = require('./mixins/UpdateAPI');
 
 /**
  * @abstract

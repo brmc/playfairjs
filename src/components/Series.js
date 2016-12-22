@@ -1,4 +1,4 @@
-var DataSet = require('./DataSet');
+let DataSet = require('./DataSet');
 
 class Series extends DataSet{
     constructor(label, values) {

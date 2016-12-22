@@ -1,4 +1,4 @@
-var Axis = require('./Axis');
+let Axis = require('./Axis');
 
 class IndependentAxis extends Axis{
     constructor() {
@@ -49,7 +49,7 @@ class IndependentAxis extends Axis{
 
     
     buildConfiguration() {
-        var config = {
+        let config = {
             type: this.type,
             label: {
                 text: this.label,
@@ -66,7 +66,7 @@ class IndependentAxis extends Axis{
                 config.categories = this.tickMarks;
                 break;
             case 'timeseries':
-                config.tick.values =  function(x) {return x};
+                config.tick.values = (x) => x;
 
                 break;
             case 'indexed':

@@ -1,5 +1,5 @@
-var DependentAxis = require('../../components/DependentAxis');
-var IndependentAxis = require('../../components/IndependentAxis');
+let DependentAxis = require('../../components/DependentAxis');
+let IndependentAxis = require('../../components/IndependentAxis');
 
 /**
  * @param superClass
@@ -46,10 +46,8 @@ let AxisAPI = (superClass) => class extends superClass {
      * @param {Formatter} formatter
      * @returns {Axis}
      */
-    createAxis(axisClass, label, formatter) {
-        formatter = formatter || function(x) {return x};
-
-        var axis = new axisClass();
+    createAxis(axisClass, label, formatter = (x) => x) {
+        let axis = new axisClass();
         axis.setLabel(label)
             .setFormatter(formatter);
 

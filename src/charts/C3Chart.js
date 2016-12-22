@@ -1,8 +1,8 @@
-var c3 = require('c3');
-var mixwith = require('mixwith');
-var mix = mixwith.mix;
-var FullChart = require('./FullChart');
-var GuideLineAPI = require('./mixins/GuideLineAPI');
+let c3 = require('c3');
+let mixwith = require('mixwith');
+let mix = mixwith.mix;
+let FullChart = require('./FullChart');
+let GuideLineAPI = require('./mixins/GuideLineAPI');
 
 /**
  * @implements ChartInterface
@@ -20,29 +20,20 @@ class C3Chart extends mix(FullChart).with(GuideLineAPI) {
     }
 
     compileDataSet() {
-        var allData = this.series;
+        let allData = this.series;
+        let columns = [];
+        let types = {};
+        let axes = {};
 
-        var columns = [];
-        var types = {};
-        var axes = {};
-
-        for (var i in allData) {
-            if (!allData.hasOwnProperty(i)) {
-                continue;
-            }
-
-            var series = allData[i];
-
+        for (let series of allData) {
             let label = series.label;
-            types[label] = series.type;
-
-            axes[label] = series.axis;
-
-            var data = series.data;
+            let data = series.data;
 
             data.splice(0, 0, label);
-
             columns.push(data);
+
+            types[label] = series.type;
+            axes[label] = series.axis;
         }
 
         this.compiledData = {

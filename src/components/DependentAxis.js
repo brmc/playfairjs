@@ -1,4 +1,4 @@
-var Axis = require('./Axis');
+let Axis = require('./Axis');
 
 class DependentAxis extends Axis{
     constructor() {
@@ -26,7 +26,7 @@ class DependentAxis extends Axis{
      * @returns {{show: boolean, label: {text: string, position: string}, tick: {format: Formatter}}}
      */
     buildConfiguration () {
-        var config = {
+        let config = {
             show: true,
             label:   {
                 text: this.label,

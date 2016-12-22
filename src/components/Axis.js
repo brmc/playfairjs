@@ -1,4 +1,4 @@
-var Formatter = require('../formatters/Formatter');
+let Formatter = require('../formatters/Formatter');
 
 class Axis {
     constructor() {
@@ -6,7 +6,7 @@ class Axis {
          * @type {Formatter}
          * @private
          */
-        this.formatter = function(x) {return x};
+        this.formatter = (x) => x;
 
         /**
          * @type {string}
