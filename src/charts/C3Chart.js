@@ -3,11 +3,12 @@ let mixwith = require('mixwith');
 let mix = mixwith.mix;
 let FullChart = require('./FullChart');
 let GuideLineAPI = require('./mixins/GuideLineAPI');
-
+let DesignAPI = require('./mixins/DesignAPI');
 /**
  * @implements ChartInterface
+ * @extends GuideLineAPI
  */
-class C3Chart extends mix(FullChart).with(GuideLineAPI) {
+class C3Chart extends mix(FullChart).with(GuideLineAPI, DesignAPI) {
     /**
      * @param {String} domId
      */
@@ -19,8 +20,11 @@ class C3Chart extends mix(FullChart).with(GuideLineAPI) {
         this.hiddenFields = [];
     }
 
+    /**
+     * @returns {C3Chart}
+     */
     compileDataSet() {
-        let allData = this.series;
+        let allData = this.dataSets;
         let columns = [];
         let types = {};
         let axes = {};
@@ -37,7 +41,40 @@ class C3Chart extends mix(FullChart).with(GuideLineAPI) {
         }
 
         this.compiledData = {
+            url:,
+            json:,
+            rows:,
             columns: columns,
+            mimeType:,
+            keys:,
+            x:,
+            xs:,
+            xFormat:,
+            xLocaltime:,
+            xSort:,
+            names:,
+            classes:,
+            type:,
+            order:,
+            regions,
+            color:,
+            colors:,
+            empty: {
+                labels: {
+                    text:,
+                }
+            },
+            selection: {
+                enabled:,
+                grouped:,
+                multiple:,
+                draggable:,
+                isselectable:,
+            },
+            onmouseover:,
+            onmouseout:,
+            onselected:,
+            onunselected:,
             types: types,
             labels: this.areLabelsVisible(),
             groups: this.groups,
@@ -49,14 +86,97 @@ class C3Chart extends mix(FullChart).with(GuideLineAPI) {
         return this;
     };
 
+    buildXAxisConfiguration() {
+        let axis = this.getXAxis();
+
+        let config = {
+            type: axis.type,
+            label: {
+                text: axis.label,
+                position: this.isRotated() ? 'outer-middle' : 'outer-center'
+            }
+            //tick: {
+            //format: axis.getTickMarks() === undefined ? undefined : axis.getFormatter()
+            //}
+
+        };
+
+        switch (axis.type){
+            case 'categories':
+                config.categories = axis.tickMarks;
+                break;
+            case 'timeseries':
+                config.tick.values = (x) => x;
+
+                break;
+            case 'indexed':
+            default:
+                break;
+        }
+
+        return config;
+    };
+
+    /**
+     * todo this is too library specific.  this should be moved to the chart layer
+     * @returns {{show: boolean, label: {text: string, position: string}, tick: {format: Formatter}}}
+     */
+    buildYAxisConfiguration (axis) {
+        let config = {
+            show: true,
+            label:   {
+                text: axis.label,
+                position: this.isRotated() ? 'outer-center' : 'outer-middle'
+            },
+            tick: {
+                format: axis.formatter
+            }
+        };
+
+        config.label = {
+            text: axis.label,
+            position: axis.position
+        };
+
+        return config;
+    }
+
+    buildY1AxisConfiguration() {
+        return this.hasYAxis() ? this.buildYAxisConfiguration(this.yAxis) : undefined;
+    }
+
+    buildY2AxisConfiguration() {
+        return this.hasY2Axis() ? this.buildYAxisConfiguration(this.y2Axis) : undefined;
+    }
+
+    /**
+     * @returns {C3Chart}
+     */
     configureChart() {
         this.configuration = {
             bindto: this.domSelector,
             data: this.compiledData,
+            size: this.size,
+            padding: this.padding,
+            color: {
+                pattern: this.colors,
+                threshhold: undefined, // todo waiting for docs
+            },
+            interaction: {
+                enabled:,
+            },
+            transition: {
+                duration:
+            },
+            oninit: ,
+            onrendered:,
+            onmouseout:,
+            onresize:,
+            onresized:,
             axis: {
-                x: this.getXAxis().buildConfiguration(),
-                y: this.hasYAxis() ? this.yAxis.buildConfiguration() : undefined,
-                y2: this.hasY2Axis() ? this.y2Axis.buildConfiguration() : undefined,
+                x: this.buildXAxisConfiguration(),
+                y: this.buildY1AxisConfiguration(),
+                y2: this.buildY2AxisConfiguration(),
                 rotated: this.isRotated()
             },
             legend: {

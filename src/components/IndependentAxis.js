@@ -6,14 +6,7 @@ class IndependentAxis extends Axis{
 
         this.type = 'categories';
         this.tickMarks = [];
-        this.position = 'outer-center';
-    }
-
-    setPosition(isRotated) {
-        this.position = isRotated ? 'outer-middle' : 'outer-center';
-
-        return this;
-    };
+     }
 
     setType(val) {
         this.type = val;
@@ -45,36 +38,6 @@ class IndependentAxis extends Axis{
 
     useTimeseries() {
         return this.setType('timeseries');
-    };
-
-    
-    buildConfiguration() {
-        let config = {
-            type: this.type,
-            label: {
-                text: this.label,
-                position: this.position
-            }
-            //tick: {
-                //format: this.getTickMarks() === undefined ? undefined : this.getFormatter()
-            //}
-
-        };
-
-        switch (this.type){
-            case 'categories':
-                config.categories = this.tickMarks;
-                break;
-            case 'timeseries':
-                config.tick.values = (x) => x;
-
-                break;
-            case 'indexed':
-            default:
-                break;
-        }
-
-        return config;
     };
 }
 

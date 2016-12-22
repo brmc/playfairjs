@@ -52,18 +52,18 @@
 
 
     /** Add some data to the  axis **/
-    var lastWeekViews = new playfair.Series('last week views', [212, 110, 302]);
+    var lastWeekViews = new playfair.DataSet('last week views', [212, 110, 302]);
     lastWeekViews.useYAxis()
             .renderAsLine();
 
-    var thisWeekViews = new playfair.Series('this week views', [122, 100, 230]);
+    var thisWeekViews = new playfair.DataSet('this week views', [122, 100, 230]);
     thisWeekViews.useYAxis()
             .renderAsSpline();
 
-    chart.setDataSet([lastWeekViews, thisWeekViews]);
+    chart.setDataSets([lastWeekViews, thisWeekViews]);
 
     /** add some new data to the right Axis **/
-    var totalClicks = new playfair.Series('all time clicks', [1038349, 120983, 192334]);
+    var totalClicks = new playfair.DataSet('all time clicks', [1038349, 120983, 192334]);
     totalClicks.renderAsBar()
             .useY2Axis();
 
@@ -77,7 +77,7 @@
 
     lastWeekViews.renderAsPie();
     thisWeekViews.renderAsPie();
-    chart.setDataSet([lastWeekViews, thisWeekViews]);
+    chart.setDataSets([lastWeekViews, thisWeekViews]);
 
     chart.load();
 
@@ -91,7 +91,7 @@
     lastWeekViews.renderAsArea();
     thisWeekViews.renderAsArea();
 
-    chart.setDataSet([lastWeekViews, thisWeekViews]);
+    chart.setDataSets([lastWeekViews, thisWeekViews]);
 
     /** ok, there seems to be a bug with calling load() multiple times.
      * extra tick marks are added for some reason. but you get the idea.

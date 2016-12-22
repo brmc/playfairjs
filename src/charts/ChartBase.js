@@ -25,7 +25,7 @@ class ChartBase {
          * @type {Array}
          * @private
          */
-        this.series = [];
+        this.dataSets = [];
     }
 
     setDomSelector(selector) {
@@ -66,14 +66,14 @@ class ChartBase {
         return this.legend;
     }
 
-    setDataSet(data) {
-        this.series = data;
+    setDataSets(data) {
+        this.dataSets = data;
 
         return this;
     }
 
     addDataSet(data) {
-        this.series.push(data);
+        this.dataSets.push(data);
 
         return this;
     }
