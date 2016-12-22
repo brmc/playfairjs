@@ -4,11 +4,13 @@ let mix = mixwith.mix;
 let FullChart = require('./FullChart');
 let GuideLineAPI = require('./mixins/GuideLineAPI');
 let DesignAPI = require('./mixins/DesignAPI');
+let EventAPI = require('./mixins/OnEventsAPI');
+
 /**
  * @implements ChartInterface
  * @extends GuideLineAPI
  */
-class C3Chart extends mix(FullChart).with(GuideLineAPI, DesignAPI) {
+class C3Chart extends mix(FullChart).with(GuideLineAPI, DesignAPI, EventAPI) {
     /**
      * @param {String} domId
      */
@@ -163,16 +165,16 @@ class C3Chart extends mix(FullChart).with(GuideLineAPI, DesignAPI) {
                 threshhold: undefined, // todo waiting for docs
             },
             interaction: {
-                enabled:,
+                enabled: this.isInteractive(),
             },
             transition: {
-                duration:
+                duration: this.transitionDuration
             },
-            oninit: ,
-            onrendered:,
-            onmouseout:,
-            onresize:,
-            onresized:,
+            oninit: this.getEvent('oninit') ,
+            onrendered: this.getEvent('onrendered'),
+            onmouseout: this.getEvent('onmouseout'),
+            onresize: this.getEvent('onresize'),
+            onresized: this.getEvent('onresized'),
             axis: {
                 x: this.buildXAxisConfiguration(),
                 y: this.buildY1AxisConfiguration(),
