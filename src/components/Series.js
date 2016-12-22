@@ -70,11 +70,11 @@ class Series extends DataSet{
         return this;
     };
 
-    useLeftYAxis() {
+    useYAxis() {
         return this.setAxis('y');
     };
 
-    useRightYAxis() {
+    useY2Axis() {
         return this.setAxis('y2');
     };
 

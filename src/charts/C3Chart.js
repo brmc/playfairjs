@@ -55,8 +55,8 @@ class C3Chart extends mix(FullChart).with(GuideLineAPI) {
             data: this.compiledData,
             axis: {
                 x: this.getXAxis().buildConfiguration(),
-                y: this.hasLeftYAxis() ? this.leftYAxis.buildConfiguration() : undefined,
-                y2: this.hasRightYAxis() ? this.rightYAxis.buildConfiguration() : undefined,
+                y: this.hasYAxis() ? this.yAxis.buildConfiguration() : undefined,
+                y2: this.hasY2Axis() ? this.y2Axis.buildConfiguration() : undefined,
                 rotated: this.isRotated()
             },
             legend: {

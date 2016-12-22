@@ -47,17 +47,17 @@
     chart.setXAxis(xAxis);
 
     /** but there are also factory methods directly on the chart **/
-    chart.createLeftYAxis('views')
-            .createRightYAxis('clicks');
+    chart.createYAxis('views')
+            .createY2Axis('clicks');
 
 
-    /** Add some data to the left axis **/
+    /** Add some data to the  axis **/
     var lastWeekViews = new playfair.Series('last week views', [212, 110, 302]);
-    lastWeekViews.useLeftYAxis()
+    lastWeekViews.useYAxis()
             .renderAsLine();
 
     var thisWeekViews = new playfair.Series('this week views', [122, 100, 230]);
-    thisWeekViews.useLeftYAxis()
+    thisWeekViews.useYAxis()
             .renderAsSpline();
 
     chart.setDataSet([lastWeekViews, thisWeekViews]);
@@ -65,7 +65,7 @@
     /** add some new data to the right Axis **/
     var totalClicks = new playfair.Series('all time clicks', [1038349, 120983, 192334]);
     totalClicks.renderAsBar()
-            .useRightYAxis();
+            .useY2Axis();
 
     /** notice this is a different method than chart.setDataSet() **/
     chart.addDataSet(totalClicks);
@@ -85,7 +85,7 @@
     chart.setDomSelector('.rotated');
 
     /** clear right axis **/
-    chart.setRightYAxis()
+    chart.setY2Axis()
             .rotate();
 
     lastWeekViews.renderAsArea();

@@ -21,14 +21,14 @@ let AxisAPI = (superClass) => class extends superClass {
          * @type {DependentAxis}
          * @private
          */
-        this.leftYAxis = undefined;
+        this.yAxis = undefined;
 
         /**
          *
          * @type {DependentAxis}
          * @private
          */
-        this.rightYAxis = undefined;
+        this.y2Axis = undefined;
     }
 
     /**
@@ -68,8 +68,8 @@ let AxisAPI = (superClass) => class extends superClass {
      * @param {String} label
      * @param {Formatter} formatter
      */
-    createLeftYAxis(label, formatter) {
-        this.leftYAxis = this.createAxis(DependentAxis, label, formatter);
+    createYAxis(label, formatter) {
+        this.yAxis = this.createAxis(DependentAxis, label, formatter);
 
         return this;
     }
@@ -78,8 +78,8 @@ let AxisAPI = (superClass) => class extends superClass {
      * @param {String} label
      * @param {Formatter} formatter
      */
-    createRightYAxis(label, formatter) {
-        this.rightYAxis = this.createAxis(DependentAxis, label, formatter);
+    createY2Axis(label, formatter) {
+        this.y2Axis = this.createAxis(DependentAxis, label, formatter);
 
         return this;
     }
@@ -87,22 +87,22 @@ let AxisAPI = (superClass) => class extends superClass {
     /**
      * @returns {boolean}
      */
-    hasLeftYAxis () {
-        return this.leftYAxis !== undefined;
+    hasYAxis () {
+        return this.yAxis !== undefined;
     }
 
     /**
      * @returns {boolean}
      */
-    hasRightYAxis() {
-        return this.rightYAxis !== undefined
+    hasY2Axis() {
+        return this.y2Axis !== undefined
     }
 
     /**
      * @param {DependentAxis} axis
      */
-    setLeftYAxis(axis) {
-        this.leftYAxis = axis;
+    setYAxis(axis) {
+        this.yAxis = axis;
 
         return this;
     }
@@ -111,8 +111,8 @@ let AxisAPI = (superClass) => class extends superClass {
     /**
      * @param {DependentAxis} axis
      */
-    setRightYAxis(axis) {
-        this.rightYAxis = axis;
+    setY2Axis(axis) {
+        this.y2Axis = axis;
 
         return this;
     }
