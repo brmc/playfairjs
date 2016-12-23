@@ -4,7 +4,8 @@ let mix = mixwith.mix;
 let FullChart = require('./FullChart');
 let GuideLineAPI = require('./mixins/GuideLineAPI');
 let DesignAPI = require('./mixins/DesignAPI');
-let EventAPI = require('./mixins/OnEventsAPI');
+let EventAPI = require('./mixins/EventAPI');
+let Grid = require('../components/Grid');
 
 /**
  * @implements ChartInterface
@@ -20,6 +21,8 @@ class C3Chart extends mix(FullChart).with(GuideLineAPI, DesignAPI, EventAPI) {
         this.configuration = {};
         this.compiledData = {};
         this.hiddenFields = [];
+
+        this.grid = new Grid();
     }
 
     /**
@@ -34,9 +37,8 @@ class C3Chart extends mix(FullChart).with(GuideLineAPI, DesignAPI, EventAPI) {
         for (let series of allData) {
             let label = series.label;
             let data = series.data;
-
-            data.splice(0, 0, label);
-            columns.push(data);
+            
+            columns.push([label].concat(data));
 
             types[label] = series.type;
             axes[label] = series.axis;
@@ -186,6 +188,12 @@ class C3Chart extends mix(FullChart).with(GuideLineAPI, DesignAPI, EventAPI) {
                 show: this.isLegendVisible()
             },
             grid:{
+                x: {
+                    show: this.grid.areXGridLinesVisible()
+                },
+                y: {
+                    show: this.grid.areYGridLinesVisible()
+                },
                 focus:{
                     show: this.isGuidelineVisible()
                 }
@@ -202,8 +210,8 @@ class C3Chart extends mix(FullChart).with(GuideLineAPI, DesignAPI, EventAPI) {
     }
 
     reload() {
-        this.xchart.destroy();
-        this.load();
+        this.configureChart().renderChart();
+
     }
 
     renderChart() {

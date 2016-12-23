@@ -1,4 +1,4 @@
-let OnEventAPI = (superClass) => class extends superClass {
+let EventAPI = (superClass) => class extends superClass {
     constructor(...args) {
         super(...args);
 
@@ -20,4 +20,4 @@ let OnEventAPI = (superClass) => class extends superClass {
     }
 
 };
-module.exports = OnEventAPI;
+module.exports = EventAPI;
